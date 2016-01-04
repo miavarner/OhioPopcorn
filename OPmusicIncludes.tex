@@ -1,0 +1,21 @@
+\usepackage{pdfpages}
+\usepackage{color}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\usepackage{tocloft}
+% \cftpagenumbersoff{chapters}
+\addtocontents{toc}{\cftpagenumbersoff{chapter}}
+\addtocontents{toc}{\cftpagenumbersoff{section}}
+\addtocontents{toc}{\cftpagenumbersoff{subsection}}
+\renewcommand{\cftdot}{}
+\renewcommand{\cfttoctitlefont}{\color{black}}
+
+\newcommand\invisiblesubsection[1]{%
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{subsection}{#1}%
+  \sectionmark{#1}}
+
+\subtitle{Music Book}

@@ -6,7 +6,7 @@ output:
 #    toc: true
 #    toc_depth: 3
     includes:
-      in_header: 2015SetListIncludes.tex
+      in_header: OPmusicIncludes.tex
 ---
 \lhead{}
 \chead{}
@@ -27,10 +27,14 @@ output:
 
 ```{r songs,echo=FALSE}
 require(plyr)
+#order by set when making a set list
+by.set<-FALSE
+
+#music part or formatting
 types<-if(FALSE)c('Chords','Lyrics','Lead','Rhythm','Bass') else c('Chords','Lyrics')
 
 #datapath<-'/home/jallen/Music/'
-datapath<-'e:/'#
+set.paths('OhioPopcorn')#
 
 ####
 #Functions
@@ -47,43 +51,55 @@ stripSlash <- function(x) {
       sep="", collapse="")
 }
 
-#songs<-read.csv('/home/jallen/Music/2015SetList/songs.csv')
-songs<-read.csv(paste0(datapath,'OPsongs.csv'))
+song.pop<-function(type,band,song){
+  if(file.exists(paste0(datapath,band,song,type,'.pdf'))){
+    cat(paste0('\\includepdf[pages=-,pagecommand={\\pagestyle{fancy}},addtotoc={1,subsubsection,2,',
+               type,',',datapath,
+               band,
+               song,
+               type,
+               '}]{',datapath,
+               band,
+               song,
+               type,'.pdf}\n\n'))
+    }
+}
+
+####
+#End Functions
+####
+
+#read songlist
+songs<-read.csv(paste0(rootpath,'OPsongs.csv'))
+#create dataframe
 songs.df<-data.frame(page=as.numeric(songs$page),
                      song=sapply(as.character(songs$song),simpleCap),
                      band=factor(songs$band),
                      set=as.numeric(songs$set),
                      number=as.numeric(songs$number),
                      row.names=NULL)
+#remove spaces in song and band
 songs.df$song.c<-gsub("[[:space:]]", "", songs.df$song)
 songs.df$band.c<-gsub("[[:space:]]", "", songs.df$band)
+#remove slashes
 songs.df$band.c<-apply(songs.df,1,function(x)stripSlash(x[['band.c']]))
 
-songs.df<-songs.df[order(songs.df$set,songs.df$number,songs.df$page,songs.df$band,songs.df$song),]
+#order songs by set or band and song
+songs.df<-if(by.set){
+  songs.df[order(songs.df$set,songs.df$number,songs.df$page,songs.df$band,songs.df$song),]
+} else songs.df[order(songs.df$band,songs.df$song),]
 
-song.pop<-function(type,band,song){
-  if(file.exists(paste0(datapath,'2015SetList/pdfs/',band,song,type,'.pdf'))){
-    cat(paste0('\\includepdf[pages=-,pagecommand={\\pagestyle{fancy}},addtotoc={1,subsubsection,2,',
-               type,',',datapath,'2015SetList/pdfs/',
-               band,
-               song,
-               type,
-               '}]{',datapath,'2015SetList/pdfs/',
-               band,
-               song,
-               type,'.pdf}\n\n'))
-    }
-  }
+
 ```
 
 
 ```{r sets,echo=FALSE,warning=FALSE,message=FALSE,results='asis'}
-
-
-l_ply(seq(1,max(songs.df$set)),
+#iterate through songs.df based on whether it is a set list or not
+l_ply(if(by.set) seq(1,max(songs.df$set)) else 1,
       .fun=function(set){
-        cat('\\section{Set',set,'}\n\n')
-        apply(songs.df[songs.df$set==set,],1,function(x){
+        if(by.set)cat('\\section{Set',set,'}\n\n')
+        songs.list<-if(by.set) songs.df[songs.df$set==set,] else songs.df
+        apply(songs.list,1,function(x){
           cat('\\invisiblesubsection{',x[['song']],'-',x[['band']],'- Page',x[['page']],'}\n\n')
           l_ply(types,
                 .fun=function(type){
