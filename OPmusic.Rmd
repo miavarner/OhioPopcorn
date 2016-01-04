@@ -26,8 +26,15 @@ output:
 
 
 ```{r songs,echo=FALSE}
+require(plyr)
+types<-if(FALSE)c('Chords','Lyrics','Lead','Rhythm','Bass') else c('Chords','Lyrics')
+
 #datapath<-'/home/jallen/Music/'
 datapath<-'e:/'#
+
+####
+#Functions
+####
 simpleCap <- function(x) {
   s <- strsplit(x, " ")[[1]]
   paste(toupper(substring(s, 1,1)), substring(s, 2),
@@ -41,7 +48,7 @@ stripSlash <- function(x) {
 }
 
 #songs<-read.csv('/home/jallen/Music/2015SetList/songs.csv')
-songs<-read.csv(paste0(datapath,'2015SetList/songs.csv'))
+songs<-read.csv(paste0(datapath,'OPsongs.csv'))
 songs.df<-data.frame(page=as.numeric(songs$page),
                      song=sapply(as.character(songs$song),simpleCap),
                      band=factor(songs$band),
@@ -69,34 +76,16 @@ song.pop<-function(type,band,song){
   }
 ```
 
-\newpage
-
-\section{The Band}
-\huge
-Mike Gorman - Drums, Vocals, Guitar
-\vspace{1em}
-
-David Hastings - Lead, Bass Guitar
-\vspace{1em}
-
-Joel Allen - Bass, Rhythm Guitar
-\vspace{1em}
-
-Keith Allen - Vocals
-\vspace{1em}
-
-Jim Grote - Lead Guitar, Drums
-
-\newpage
 
 ```{r sets,echo=FALSE,warning=FALSE,message=FALSE,results='asis'}
-require(plyr)
+
+
 l_ply(seq(1,max(songs.df$set)),
       .fun=function(set){
         cat('\\section{Set',set,'}\n\n')
         apply(songs.df[songs.df$set==set,],1,function(x){
           cat('\\invisiblesubsection{',x[['song']],'-',x[['band']],'- Page',x[['page']],'}\n\n')
-          l_ply(c('Chords','Lyrics'),#,'Lead','Rhythm','Bass'),
+          l_ply(types,
                 .fun=function(type){
                   song.pop(type,x[['band.c']],x[['song.c']])
                   })
