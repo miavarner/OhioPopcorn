@@ -1,0 +1,164 @@
+---
+title: Band Name Goes Here New Years Eve Gig 2015
+#subtitle: New Years Eve Gig 2015
+toc: true
+header-includes:
+  - \usepackage{pdfpages}
+  - \usepackage{xstring}
+
+---
+
+
+\newcommand{\song}[4]{
+
+\subsubsection{#2 - #3}
+
+- Page #1
+
+\includepdf[pages=-]{pdfs/\ignorespaces{#3}\ignorespaces{#2}Lead.pdf}
+
+\includepdf[pages=-]{pdfs/\ignorepaces{#3}\ignorespaces{#2}Bass.pdf}
+}
+
+
+
+#Set List
+
+Mike Gorman - Drums, Vocals, Guitar
+
+David Hastings - Lead, Bass Guitar
+
+Joel Allen - Bass, Rhythm Guitar
+
+Keith Allen - Vocals
+
+## Set 1
+Mike Gorman - Drums
+
+David Hastings - Lead Guitar
+
+Joel Allen - Bass Guitar
+
+Keith Allen - Vocals
+
+\song{1}{All Day And All Of The Night}{The Kinks}{}
+
+
+### New Years Day  - U2
+- Page 8
+
+\includepdf[pages=-]{pdfs/U2NewYearsDayLead.pdf}
+
+\includepdf[pages=-]{pdfs/U2NewYearsDayBass.pdf}
+
+### Sunday Bloody Sunday  - U2
+- Page 9
+
+\includepdf[pages=-]{pdfs/U2SundayBloodySundayLead.pdf}
+
+\includepdf[pages=-]{pdfs/U2SundayBloodySundayBass.pdf}
+
+### Iron Man  - Black Sabbath
+- Page 12
+
+\includepdf[pages=-]{pdfs/BlackSabbathIronManLead.pdf}
+
+\includepdf[pages=-]{pdfs/BlackSabbathIronManBass.pdf}
+
+### Crazy Train  - Ozzy Osbourne
+- Page 21
+
+\includepdf[pages=-]{pdfs/OzzyOsbourneCrazyTrainLead.pdf}
+
+\includepdf[pages=-]{pdfs/OzzyOsbourneCrazyTrainBass.pdf}
+
+### The Ocean - Led Zeppelin
+- Page 23
+
+\includepdf[pages=-]{pdfs/LedZeppelinTheOceanLead.pdf}
+
+\includepdf[pages=-]{pdfs/LedZeppelinTheOceanBass.pdf}
+
+### D'yer Maker - Led Zeppelin
+- Page 24
+
+\includepdf[pages=-]{pdfs/LedZeppelinDyerMakerLead.pdf}
+
+\includepdf[pages=-]{pdfs/LedZeppelinDyerMakerBass.pdf}
+
+### Black Dog  - Led Zeppelin
+- Page 25
+
+\includepdf[pages=-]{pdfs/LedZeppelinBlackDogLead.pdf}
+
+\includepdf[pages=-]{pdfs/LedZeppelinBlackDogBass.pdf}
+
+### Keep Your Hands To Yourself  - Georgia Satellites
+- Page 26
+
+\includepdf[pages=-]{pdfs/GeorgiaSatellitesKeepYourHandsToYourselfLead.pdf}
+
+\includepdf[pages=-]{pdfs/GeorgiaSatellitesKeepYourHandsToYourselfBass.pdf}
+
+### Radio Active  - Imagine Dragons
+- Page 27
+
+\includepdf[pages=-]{pdfs/ImagineDragonsRadioactiveLead.pdf}
+
+\includepdf[pages=-]{pdfs/ImagineDragonsRadioactiveBass.pdf}
+
+### Steppin Stone  - The Monkees
+- Page 31
+
+\includepdf[pages=-]{pdfs/TheMonkeesSteppinStoneLead.pdf}
+
+\includepdf[pages=-]{pdfs/TheMonkeesSteppinStoneBass.pdf}
+
+### Blister in the Sun  - Violent Femmes
+- Page 41
+
+\includepdf[pages=-]{pdfs/ViolentFemmesBlisterInTheSunLead.pdf}
+
+\includepdf[pages=-]{pdfs/ViolentFemmesBlisterInTheSunBass.pdf}
+
+### The Gambler  - Kenny Rogers/Sex Pistols version
+- Page 38
+
+\includepdf[pages=-]{pdfs/KRTheGamblerLead.pdf}
+
+\includepdf[pages=-]{pdfs/KRTheGamblerBass.pdf}
+
+\song{49}{Sweet Child of Mine}{Guns N Roses}{GnRSweetChildOMine}
+
+## Set 2
+
+Mike Gorman - Drums
+
+David Hastings - Bass
+
+Joel Allen - Guitar
+
+Keith Allen - Vocals
+
+\song{11}{You shook me all night long}{AC/DC}{ACDCYouShookMeAllNightLong}
+
+\song{13}{Back in Black}{AC/DC}{ACDCBackInBlack}
+
+\song{26}{Keep Your Hands To Yourself}{Georgia Satellites}{GeorgiaSatellitesKeepYourHandsToYourself}
+
+###Born To Run - Bruce Springsteen
+- Page 35
+
+\includepdf[pages=-]{pdfs/BruceSpringsteenBornToRunChords.pdf}
+
+\song{43}{Brown Eyed Girl}{Van Morrison}{VanMorrisonBrownEyedGirl}
+
+\song{48}{Folsom Prison Blues}{Johnny Cash}{JohnnyCashFolsomPrisonBlues}
+
+\song{15}{Basket Case}{Green Day }{}
+
+\song{33}{Friday I'm in Love}{The Cure}{}
+
+\song{34}{Just Live Heaven}{The Cure}{}
+
+\song{}{Country Roads}{John Denver}{}
